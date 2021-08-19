@@ -1,6 +1,22 @@
 <?php
-$con = mysqli_connect("localhost:3308", "root", "") or die("Unable to connect");
-// Use the line below if you're on MAMP
-//$con = mysqli_connect("localhost:8889", "root", "root") or die("Unable to connect"); 
-mysqli_select_db($con, "testdb");
+$db_host = 'localhost';
+$db_user = 'root';
+$db_password = ''; // set to root for MAMP
+$db_db = 'testdb';
+
+$mysqli = @new mysqli(
+    $db_host,
+    $db_user,
+    $db_password,
+    $db_db
+);
+
+if ($mysqli->connect_error) {
+    echo 'Errno: ' . $mysqli->connect_errno;
+    echo '<br>';
+    echo 'Error: ' . $mysqli->connect_error;
+    exit();
+}
+
+$con = $mysqli; // we use $con in our code
 ?>
